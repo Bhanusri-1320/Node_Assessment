@@ -7,10 +7,11 @@ import {
   createCartProductsCtr,
   deleteCartProductsCtr,
 } from "../controllers/cart.controller.js";
+import { getProductById } from "../services/product.services.js";
 
 const router = express.Router();
 
-router.get("/", getAllCartProductsCtr);
+router.get("/:id", getAllCartProductsCtr);
 router.post("/", createCartProductsCtr);
 router.delete("/:id", deleteCartProductsCtr);
 

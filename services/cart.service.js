@@ -4,10 +4,12 @@ async function getAllCartProducts() {
   return await Cart.scan.go();
 }
 async function createCartProducts(product) {
+  console.log(product);
   await Cart.create(product).go();
 }
 
-async function getProductById(id) {
+async function getCartProductById(id) {
+  console.log(id);
   return await Cart.get({ userId: id }).go();
 }
 async function deleteCartProductById(id) {
@@ -16,6 +18,6 @@ async function deleteCartProductById(id) {
 export {
   getAllCartProducts,
   createCartProducts,
-  getProductById,
+  getCartProductById,
   deleteCartProductById,
 };

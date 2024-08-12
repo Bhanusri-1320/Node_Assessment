@@ -21,11 +21,9 @@ const Cart = new Entity(
           properties: {
             productId: {
               type: "string",
-              required: true,
             },
             quantity: {
               type: "number",
-              required: true,
             },
           },
         },
@@ -50,7 +48,7 @@ const Cart = new Entity(
     },
     // add your DocumentClient and TableName as a second parameter
   },
-  { client, table: "Cart" }
+  { client, table: "cart" }
 );
 
 export { Cart };
