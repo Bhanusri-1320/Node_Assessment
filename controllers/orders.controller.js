@@ -8,7 +8,6 @@ import {
   deleteCartProductById,
   getCartProductById,
 } from "../services/cart.service.js";
-
 async function getAllOrderProductsCtr(request, response) {
   const { id } = request.params;
   // response.send(movies);
@@ -22,33 +21,15 @@ async function getAllOrderProductsCtr(request, response) {
 }
 async function createOrderProductsCtr(req, res) {
   const { userId } = req.body;
-  const data = await getCartProductById(userId);
-  console.log(data);
-  await createOrderById(data);
-  await deleteCartProductById(userId);
+  console.log(userId);
+  try {
+    const data = await getCartProductById(userId);
+    console.log(data);
+    await createOrderById(data.data);
+    await deleteCartProductById(userId);
+    res.send(data.data);
+  } catch (err) {
+    console.log(err);
+  }
 }
-// async function createOrderProductsCtr(req, res) {
-//   //   const data = req.body;
-//   //   //   console.log(data);
-//   //   const addproduct = {
-//   //     ...data,
-//   //     userId: v4(),
-//   //   };
-//   //   try {
-//   //     // console.log(data.products[0].productId);
-//   //     // console.log("id:", data.products.productId);
-//   //     const product = await createOrderById(data.products[0].productId);
-//   //     console.log(product);
-//   //     await createCartProducts({
-//   //       ...addproduct,
-//   //       totalPrice: +product.data.price * +data.products[0].quantity,
-//   //     });
-//   //     res.status(200).send(addproduct);
-//   //     console.log(addproduct);
-//   //   } catch (err) {
-//   //     console.log(err);
-//   //     res.status(500).send({ msg: "unable to create" });
-//   //   }
-// }
-
 export { getAllOrderProductsCtr, createOrderProductsCtr };
