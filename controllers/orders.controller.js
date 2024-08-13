@@ -10,9 +10,12 @@ import {
 } from "../services/cart.service.js";
 async function getAllOrderProductsCtr(request, response) {
   const { id } = request.params;
+  console.log(id);
   // response.send(movies);
   try {
+    console.log(id);
     const allProducts = await getOrdersProductById(id);
+    console.log(allProducts);
     response.status(200).send(allProducts.data);
   } catch (err) {
     console.log(err);
